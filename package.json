@@ -7,6 +7,7 @@
     "prepare": "forge install && git submodule update --init --recursive && husky",
     "compile": "forge build",
     "devnet": "anvil",
+    "dep": "forge script ./scripts/Deploy.s.sol",
     "commitlint": "commitlint --edit"
   },
   "commitlint": {
