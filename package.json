@@ -1,0 +1,22 @@
+{
+  "name": "@hiddentao/onchain-nfts",
+  "private": true,
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "prepare": "forge install && git submodule update --init --recursive && husky",
+    "compile": "forge build",
+    "devnet": "anvil",
+    "commitlint": "commitlint --edit"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^18.6.1",
+    "@commitlint/config-conventional": "^18.6.2",
+    "husky": "^9.0.11"
+  }
+}
