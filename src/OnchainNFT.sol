@@ -4,7 +4,6 @@ pragma solidity ^0.8.24;
 import { ERC721 } from "openzeppelin/token/ERC721/ERC721.sol";
 import { ERC721Enumerable } from "openzeppelin/token/ERC721/extensions/ERC721Enumerable.sol";
 import { ERC721URIStorage } from "openzeppelin/token/ERC721/extensions/ERC721URIStorage.sol";
-import { Base64 } from "openzeppelin/utils/Base64.sol";
 import { Strings } from "openzeppelin/utils/Strings.sol";
 import { Ownable } from "openzeppelin/access/Ownable.sol";
 
