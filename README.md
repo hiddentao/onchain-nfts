@@ -2,6 +2,23 @@
 
 Smart contracts for testing the compatibility of various wallets, portfolio managers and marketplaces with on-chain NFTs. In particular, this checks for ERC721 `tokenURI()` functions returning data URIs wherein all the metadata is stored on-chain, including the image data.
 
+The metadata looks something like:
+
+```json
+{
+  "name": "Onchain #1",
+  "description": "image prop - PNG data URI (big - 4286 bytes)",
+  "attributes": [
+    {
+      "display_type": "date",
+      "trait_type": "When",
+      "value": "2024-09-09"
+    }
+  ],
+  "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAAJYCAIAAAAxBA+LAAAK2UlEQVR4nOzXvasQ1B/H8d8VxeHX0D... (3802 bytes total)"
+}
+```
+
 Preliminary findings:
 
 * SVG and PNG data URIs work fine. 
