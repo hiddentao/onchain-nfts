@@ -4,7 +4,7 @@ Smart contracts for testing the compatibility of various wallets, portfolio mana
 
 ## On-chain addresses
 
-_TODO: Live deployed addresses here_
+* Sepolia: [0xC59af5e6419f1b3252894AA79c6ac08f4dc1DB2b](https://sepolia.etherscan.io/address/0xC59af5e6419f1b3252894AA79c6ac08f4dc1DB2b)
 
 ## Developer guide
 
@@ -32,9 +32,42 @@ To run a local devnet:
 $ bun devnet
 ```
 
-### Deployment
+### Deployment - local
 
-_TODO: deployment script_
+To deploy contracts:
+
+```shell
+$ bun local:dep
+```
+
+_Note: This will output a log line that looks like: `export CONTRACT_ADDRESS=0x...` - you will need this below._
+
+To set values:
+
+```shell
+$ export CONTRACT_ADDRESS="0x.."
+$ bun local:set
+```
+
+### Deployment - public network
+
+To deploy contracts:
+
+```shell
+$ export PRIVATE_KEY="0x..."
+$ export RPC_URL="http://..."
+$ export CHAIN_ID="..."
+$ bun public:dep
+```
+
+_Note: This will output a log line that looks like: `export CONTRACT_ADDRESS=0x...` - you will need this below._
+
+To set values:
+
+```shell
+$ export CONTRACT_ADDRESS="0x.."
+$ bun public:set
+```
 
 ## License
 

@@ -7,7 +7,10 @@
     "prepare": "forge install && git submodule update --init --recursive && husky",
     "compile": "forge build",
     "devnet": "anvil",
-    "dep": "forge script ./scripts/Deploy.s.sol --sender 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+    "local:dep": "forge script scripts/Deploy.s.sol --rpc-url http://localhost:8545 --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 --broadcast",
+    "local:set": "forge script scripts/SetValues.s.sol --rpc-url http://localhost:8545 --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 --broadcast",
+    "public:dep": "forge script scripts/Deploy.s.sol --chain-id $CHAIN_ID --rpc-url $RPC_URL --private-key $PRIVATE_KEY --broadcast",
+    "public:set": "forge script scripts/SetValues.s.sol --chain-id $CHAIN_ID --rpc-url $RPC_URL --private-key $PRIVATE_KEY --broadcast",
     "commitlint": "commitlint --edit"
   },
   "commitlint": {
