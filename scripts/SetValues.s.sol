@@ -17,23 +17,28 @@ contract SetValuesScript is Script {
         OnchainNFT nft = OnchainNFT(vm.envAddress("CONTRACT_ADDRESS"));
         console.log("Owner: %s", nft.owner());
 
-        string memory base64Png = _getBase64Png();
-        string memory base64Svg = _getBase64Svg();
+        // nft.mint(wallet, 1, "");
+        // nft.mint(wallet, 2, "");
 
-        // NFT 1: image prop - SVG data URI
-        nft.mint(wallet, 1, buildTokenUriWithImage(1, "image prop - SVG data URI", base64Svg));
+        /* Uncomment the following setToken() call groups as you see fit... */
 
-        // NFT 2: image prop - PNG data URI
-        nft.mint(wallet, 2, buildTokenUriWithImage(2, "image prop - PNG data URI", base64Png));
+        /* large images */
+        // nft.setTokenURI(1, _buildTokenUriWithImage(1, "image prop - SVG data URI (big - 4286 bytes)", _getBase64Svg()));
+        // nft.setTokenURI(2, _buildTokenUriWithImage(2, "image prop - PNG data URI (big - 3802 bytes)", _getBase64Png()));
 
-        // TODO: NFT 3: image_data prop - SVG data
-        // TODO: NFT 4: image_data prop - PNG data
+        /* small images */
+        // nft.setTokenURI(1, _buildTokenUriWithImage(1, "image prop - SVG data URI (small)", _getBase64SvgSmall()));
+
 
         vm.stopBroadcast();        
     }
 
     function _getBase64Svg() public pure returns (string memory) {
       return "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAyNCAxMDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iMTAyNCIgaGVpZ2h0PSIxMDI0IiBmaWxsPSIjMDIwRDI5Ii8+CjxwYXRoIGQ9Ik01MDkuODQ4IDc5OEM0NjUuMDg1IDc5OCA0MjQuMzM5IDc4OS42NjcgMzg3LjYxIDc3M0MzNTEuNDU1IDc1NS43NzggMzIwLjE3OCA3MzMgMjkzLjc3OSA3MDQuNjY3QzI2Ny45NTQgNjc2LjMzMyAyNDcuODY4IDY0NC4zODkgMjMzLjUyMSA2MDguODMzQzIxOS4xNzQgNTcyLjcyMiAyMTIgNTM1Ljc3OCAyMTIgNDk4QzIxMiA0NTguNTU2IDIxOS40NjEgNDIxLjA1NiAyMzQuMzgyIDM4NS41QzI0OS44NzcgMzQ5LjM4OSAyNzAuODI0IDMxNy40NDQgMjk3LjIyMiAyODkuNjY3QzMyNC4xOTUgMjYxLjMzMyAzNTUuNzU5IDIzOS4xMTEgMzkxLjkxNCAyMjNDNDI4LjY0MyAyMDYuMzMzIDQ2OC44MTUgMTk4IDUxMi40MyAxOThDNTU2LjYyIDE5OCA1OTYuNzkyIDIwNi42MTEgNjMyLjk0NyAyMjMuODMzQzY2OS42NzYgMjQxLjA1NiA3MDAuOTUzIDI2NC4xMTEgNzI2Ljc3OCAyOTNDNzUyLjYwMyAzMjEuODg5IDc3Mi42ODkgMzU0LjExMSA3ODcuMDM2IDM4OS42NjdDODAxLjM4MyA0MjUuMjIyIDgwOC41NTcgNDYxLjg4OSA4MDguNTU3IDQ5OS42NjdDODA4LjU1NyA1MzguNTU2IDgwMS4wOTYgNTc2LjA1NiA3ODYuMTc1IDYxMi4xNjdDNzcxLjI1NCA2NDcuNzIyIDc1MC4zMDcgNjc5LjY2NyA3MjMuMzM0IDcwOEM2OTYuOTM1IDczNS43NzggNjY1LjM3MiA3NTcuNzIyIDYyOC42NDMgNzczLjgzM0M1OTIuNDg4IDc4OS45NDQgNTUyLjg5IDc5OCA1MDkuODQ4IDc5OFpNNTEwLjcwOSA2OTYuMzMzQzUzOS40MDMgNjk2LjMzMyA1NjQuOTQxIDY5MC43NzggNTg3LjMyMyA2NzkuNjY3QzYwOS43MDQgNjY4IDYyOC4zNTYgNjUyLjcyMiA2NDMuMjc3IDYzMy44MzNDNjU4LjE5OCA2MTQuMzg5IDY2OS4zODkgNTkzIDY3Ni44NDkgNTY5LjY2N0M2ODQuODg0IDU0NS43NzggNjg4LjkwMSA1MjEuODg5IDY4OC45MDEgNDk4QzY4OC45MDEgNDcyLjQ0NCA2ODQuNTk3IDQ0Ny43MjIgNjc1Ljk4OSA0MjMuODMzQzY2Ny45NTQgMzk5Ljk0NCA2NTYuMTg5IDM3OC44MzMgNjQwLjY5NCAzNjAuNUM2MjUuNzczIDM0Mi4xNjcgNjA3LjEyMiAzMjcuNDQ0IDU4NC43NCAzMTYuMzMzQzU2Mi45MzMgMzA1LjIyMiA1MzguMjU1IDI5OS42NjcgNTEwLjcwOSAyOTkuNjY3QzQ4MS40NCAyOTkuNjY3IDQ1NS42MTUgMzA1LjUgNDMzLjIzNCAzMTcuMTY3QzQxMS40MjYgMzI4LjI3OCAzOTMuMDYyIDM0My41NTYgMzc4LjE0MSAzNjNDMzYzLjIyIDM4MS44ODkgMzUxLjc0MiA0MDMgMzQzLjcwNyA0MjYuMzMzQzMzNi4yNDcgNDQ5LjY2NyAzMzIuNTE2IDQ3My41NTYgMzMyLjUxNiA0OThDMzMyLjUxNiA1MjMuNTU2IDMzNi41MzQgNTQ4LjI3OCAzNDQuNTY4IDU3Mi4xNjdDMzUyLjYwMyA1OTYuMDU2IDM2NC4wOCA2MTcuMTY3IDM3OS4wMDEgNjM1LjVDMzk0LjQ5NiA2NTMuODMzIDQxMy4xNDggNjY4LjU1NiA0MzQuOTU2IDY3OS42NjdDNDU3LjMzNyA2OTAuNzc4IDQ4Mi41ODggNjk2LjMzMyA1MTAuNzA5IDY5Ni4zMzNaTTU5Ny4yMjIgNjk2LjMzM0w2NTAuMDg5IDY0Ni42NTJMODEyIDc5My44MzNINzAwLjA5Mkw1OTcuMjIyIDY5Ni4zMzNaIiBmaWxsPSJ1cmwoI3BhaW50MF9saW5lYXJfMTA3XzQ1KSIvPgo8ZyBmaWx0ZXI9InVybCgjZmlsdGVyMF9kXzEwN180NSkiPgo8cGF0aCBkPSJNNzA5LjMyMSAyMTMuNjA5QzczMS4wNjIgMTkyLjQ2MSA3NjUuOTE5IDE5Mi44NTIgNzg3LjE3NiAyMTQuNDgxTDc5Ni4zMSAyMjMuNzc1QzgxOC45OTkgMjQ2Ljg2MSA4MTYuNzk0IDI4NC4zNjUgNzkxLjU1MyAzMDQuNjYyTDQ5Mi45MTIgNTQ0LjgxNUM0NzcuMzY3IDU1Ny4zMTUgNDU1LjI1NyA1NTcuNjYgNDM5LjMyNiA1NDUuNjVDNDE4LjE1MiA1MjkuNjg3IDQxNi4xOTQgNDk4LjczMSA0MzUuMTkgNDgwLjI1NEw3MDkuMzIxIDIxMy42MDlaIiBmaWxsPSIjRkVFRDNEIi8+CjxwYXRoIGQ9Ik00OTAuMTE0IDQ4NC4zNDZDNTEwLjg1NCA0NjEuODE0IDU0Ni41MTMgNDYxLjcwNCA1NjcuMzkzIDQ4NC4xMDhDNTg5LjAxNiA1MDcuMzA5IDU4NS4xMjQgNTQ0LjE1MyA1NTkuMTI1IDU2Mi4zNzZMMjI1LjExOSA3OTYuNDg4QzIyMS42ODcgNzk4Ljg5NCAyMTYuOTkyIDc5OC4zODEgMjE0LjE2NyA3OTUuMjkyQzIxMS4yNzEgNzkyLjEyNSAyMTEuMjc4IDc4Ny4yODMgMjE0LjE4NSA3ODQuMTI1TDQ5MC4xMTQgNDg0LjM0NloiIGZpbGw9IiNGRUVEM0QiLz4KPC9nPgo8ZGVmcz4KPGZpbHRlciBpZD0iZmlsdGVyMF9kXzEwN180NSIgeD0iMTcyIiB5PSIxNTgiIHdpZHRoPSI2ODAiIGhlaWdodD0iNjgwIiBmaWx0ZXJVbml0cz0idXNlclNwYWNlT25Vc2UiIGNvbG9yLWludGVycG9sYXRpb24tZmlsdGVycz0ic1JHQiI+CjxmZUZsb29kIGZsb29kLW9wYWNpdHk9IjAiIHJlc3VsdD0iQmFja2dyb3VuZEltYWdlRml4Ii8+CjxmZUNvbG9yTWF0cml4IGluPSJTb3VyY2VBbHBoYSIgdHlwZT0ibWF0cml4IiB2YWx1ZXM9IjAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDEyNyAwIiByZXN1bHQ9ImhhcmRBbHBoYSIvPgo8ZmVPZmZzZXQvPgo8ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIyMCIvPgo8ZmVDb21wb3NpdGUgaW4yPSJoYXJkQWxwaGEiIG9wZXJhdG9yPSJvdXQiLz4KPGZlQ29sb3JNYXRyaXggdHlwZT0ibWF0cml4IiB2YWx1ZXM9IjAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAuODggMCIvPgo8ZmVCbGVuZCBtb2RlPSJub3JtYWwiIGluMj0iQmFja2dyb3VuZEltYWdlRml4IiByZXN1bHQ9ImVmZmVjdDFfZHJvcFNoYWRvd18xMDdfNDUiLz4KPGZlQmxlbmQgbW9kZT0ibm9ybWFsIiBpbj0iU291cmNlR3JhcGhpYyIgaW4yPSJlZmZlY3QxX2Ryb3BTaGFkb3dfMTA3XzQ1IiByZXN1bHQ9InNoYXBlIi8+CjwvZmlsdGVyPgo8bGluZWFyR3JhZGllbnQgaWQ9InBhaW50MF9saW5lYXJfMTA3XzQ1IiB4MT0iNTEyIiB5MT0iMTk4IiB4Mj0iNTEyIiB5Mj0iNzk4IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiNGREZGRkYiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDBDNUZGIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+Cg==";
+    }
+
+    function _getBase64SvgSmall() public pure returns (string memory) {
+      return "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MCA1MCI+PHBhdGggZD0iTTIyIDM4VjUxTDMyIDMybDE5LTE5djEyQzQ0IDI2IDQzIDEwIDM4IDAgNTIgMTUgNDkgMzkgMjIgMzh6Ii8+PC9zdmc+";
     }
 
     function _getBase64Png() public pure returns (string memory) {
@@ -47,12 +52,14 @@ contract SetValuesScript is Script {
               '"display_type": "date",',
               '"trait_type": "When",',
               '"value": "2024-09-09"',
-          '},'
+          '}'
         )
       );
     }
 
-    function buildTokenUriWithImage(uint num, string memory description, string memory image) public pure returns (string memory) {
+    function _buildTokenUriWithImage(uint num, string memory description, string memory image) internal view returns (string memory) {
+      console.log("%s - %d bytes", description, bytes(image).length);
+
       string memory attributes = _getAttributesString();
       
       string memory json = Base64.encode(
@@ -61,8 +68,8 @@ contract SetValuesScript is Script {
               abi.encodePacked(
                 '{',
                     '"name": "Onchain #', num.toString(),'",',
-                    '"description": "', description, '"',
-                    '"attributes": [', attributes, ']',
+                    '"description": "', description, '",',
+                    '"attributes": [', attributes, '],',
                     '"image": "', image, '"'
                 '}'
               )

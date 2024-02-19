@@ -11,7 +11,7 @@ contract DeployScript is Script {
         vm.startBroadcast(wallet);
 
         OnchainNFT nft = new OnchainNFT();
-        console.log("export CONTRACT_ADDRESS=%s", address(nft));
+        console.log("Prefix the set script with: CONTRACT_ADDRESS=%s", address(nft));
 
         vm.stopBroadcast();        
     }

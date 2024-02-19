@@ -10,6 +10,8 @@ import { Ownable } from "openzeppelin/access/Ownable.sol";
 contract OnchainNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
   using Strings for uint256;
 
+  uint lastTokenId;
+
   constructor()
     ERC721("Onchain", "ONCHAIN")
     Ownable(_msgSender())
@@ -38,8 +40,9 @@ contract OnchainNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     _setTokenURI(tokenId, _tokenURI);
   }
 
-  function mint(address to, uint256 tokenId, string memory _tokenURI) external onlyOwner {
-    _safeMint(to, tokenId);
-    _setTokenURI(tokenId, _tokenURI);
+  function mint(address to, string memory _tokenURI) external onlyOwner {
+    lastTokenId++;
+    _safeMint(to, lastTokenId);
+    _setTokenURI(lastTokenId, _tokenURI);
   }
 }
