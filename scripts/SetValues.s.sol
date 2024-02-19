@@ -17,8 +17,8 @@ contract SetValuesScript is Script {
         OnchainNFT nft = OnchainNFT(vm.envAddress("CONTRACT_ADDRESS"));
         console.log("Owner: %s", nft.owner());
 
-        // nft.mint(wallet, 1, "");
-        // nft.mint(wallet, 2, "");
+        // nft.mint(wallet, "");
+        // nft.mint(wallet, "");
 
         /* Uncomment the following setToken() call groups as you see fit... */
 
