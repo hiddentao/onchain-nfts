@@ -19,12 +19,10 @@ The metadata looks something like:
 }
 ```
 
-Preliminary findings:
+For preliminary findings, see:
 
-* SVG and PNG data URIs work fine. 
-* The data URI length can be several KB. In fact, the [latest browsers support atleast 64 KB length](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs#length_limitations).
-* It's expensive to write KB of data to a storage slot (duh!), so an L2 with low gas price (e.g 1 Gwei) is essential to minimize overall cost to caller.
-* No need to use `image_raw` property since `image` works fine enough.
+* https://twitter.com/hiddentao/status/1759499716583162210
+* https://warpcast.com/hiddentao/0xa4e2a58c
 
 Example gas costs:
 
