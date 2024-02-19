@@ -30,9 +30,8 @@ Example gas costs:
 
 ## On-chain addresses
 
-* Sepolia: [0xC59af5e6419f1b3252894AA79c6ac08f4dc1DB2b](https://sepolia.etherscan.io/address/0xC59af5e6419f1b3252894AA79c6ac08f4dc1DB2b)
-* Polygon: [0x7d6D005eC1CC8ec979fb6d439FbE9c96F9ed3AB0](https://polygonscan.com/address/0x7d6D005eC1CC8ec979fb6d439FbE9c96F9ed3AB0)
-  * See the NFTs: https://polygon.nftscan.com/0x7d6d005ec1cc8ec979fb6d439fbe9c96f9ed3ab0
+* Polygon: [0xB4D3973637369692981C7C40f7a733a04b2D0E9c](https://polygonscan.com/address/0xB4D3973637369692981C7C40f7a733a04b2D0E9c)
+  * See the NFTs: https://polygon.nftscan.com/0xB4D3973637369692981C7C40f7a733a04b2D0E9c
 
 ## Developer guide
 

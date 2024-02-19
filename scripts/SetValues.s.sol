@@ -13,18 +13,18 @@ contract SetValuesScript is Script {
         address wallet = msg.sender;
         vm.startBroadcast(wallet);
 
-        console.log("Contract address: %s", vm.envAddress("CONTRACT_ADDRESS"));
+      console.log("Contract address: %s", vm.envAddress("CONTRACT_ADDRESS"));
         OnchainNFT nft = OnchainNFT(vm.envAddress("CONTRACT_ADDRESS"));
         console.log("Owner: %s", nft.owner());
 
-        // nft.mint(wallet, "");
-        // nft.mint(wallet, "");
+        nft.mint(wallet, "");
+        nft.mint(wallet, "");
 
         /* Uncomment the following setToken() call groups as you see fit... */
 
         /* large images */
-        // nft.setTokenURI(1, _buildTokenUriWithImage(1, "image prop - SVG data URI (big - 4286 bytes)", _getBase64Svg()));
-        // nft.setTokenURI(2, _buildTokenUriWithImage(2, "image prop - PNG data URI (big - 3802 bytes)", _getBase64Png()));
+        nft.setTokenURI(1, _buildTokenUriWithImage(1, "image prop - SVG data URI (big - 4286 bytes)", _getBase64Svg()));
+        nft.setTokenURI(2, _buildTokenUriWithImage(2, "image prop - PNG data URI (big - 3802 bytes)", _getBase64Png()));
 
         /* small images */
         // nft.setTokenURI(1, _buildTokenUriWithImage(1, "image prop - SVG data URI (small)", _getBase64SvgSmall()));

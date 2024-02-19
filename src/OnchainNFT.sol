@@ -12,8 +12,8 @@ contract OnchainNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
   uint lastTokenId;
 
-  constructor()
-    ERC721("Onchain", "ONCHAIN")
+  constructor(string memory name, string memory symbol)
+    ERC721(name, symbol)
     Ownable(_msgSender())
   {
   }

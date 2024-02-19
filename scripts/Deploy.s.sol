@@ -10,7 +10,7 @@ contract DeployScript is Script {
 
         vm.startBroadcast(wallet);
 
-        OnchainNFT nft = new OnchainNFT();
+        OnchainNFT nft = new OnchainNFT("TestFullyOnChainNFT", "TFOCNFT");
         console.log("Prefix the set script with: CONTRACT_ADDRESS=%s", address(nft));
 
         vm.stopBroadcast();        
